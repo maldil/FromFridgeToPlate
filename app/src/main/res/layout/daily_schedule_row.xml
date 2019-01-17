@@ -7,7 +7,7 @@
                                              android:id="@+id/DailySchedule_Row_Act_Duration">
 
     <TextView
-            android:text="Activity"
+            android:text="Activity :"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/DailySchedule_Row_Activity" android:textStyle="bold"
@@ -16,20 +16,43 @@
             app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"/>
     <TextView
-            android:text="Day"
+            android:text="Day :"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/DailySchedule_Row_Day"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/DailySchedule_Row_Activity"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"/>
+            android:textStyle="bold"
+            android:textColor="@color/Row_TExt" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/DailySchedule_Row_Activity" android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"/>
     <TextView
-            android:text="Duration"
+            android:text="Duration :"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/DailySchedule_Row_Duration" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/DailySchedule_Row_Day"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp" android:textStyle="bold" android:textColor="@color/Row_TExt"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DailySchedule_Activity_Enter" app:layout_constraintStart_toEndOf="@+id/DailySchedule_Row_Activity"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent" android:textSize="16sp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DailySchedule_Row_Day_Enter"
+            app:layout_constraintStart_toEndOf="@+id/DailySchedule_Row_Day"
+            android:layout_marginLeft="20dp" android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/DailySchedule_Activity_Enter"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Daily_Scheduler_Duration_Enter" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/DailySchedule_Row_Day_Enter"
+            app:layout_constraintStart_toEndOf="@+id/DailySchedule_Row_Duration" android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"/>
 </android.support.constraint.ConstraintLayout>

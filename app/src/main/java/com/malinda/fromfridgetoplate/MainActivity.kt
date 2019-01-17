@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 //            addFoodtext.text.clear()
             val intent = Intent(this,DailySchedule::class.java)
             startActivity(intent)
+
         }
     }
 }
