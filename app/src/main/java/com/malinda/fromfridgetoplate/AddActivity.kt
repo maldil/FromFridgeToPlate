@@ -31,7 +31,10 @@ class AddActivity : AppCompatActivity() {
             val day = sp.getSelectedItem().toString();
             val activ = sp2.getSelectedItem().toString()
             val duration = auto_duration.text.toString()
+
+
             DailySchedule.schedule.add(Triple(day,activ,duration))
+            DailySchedule.setDataFromSharedPreferences(this,DailySchedule.schedule)
             val intent = Intent(this,DailySchedule::class.java)
             startActivity(intent)
         }

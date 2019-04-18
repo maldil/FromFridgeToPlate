@@ -12,15 +12,35 @@ import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_daily_schedule.*
 import java.util.ArrayList
+import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 
 class DailySchedule : AppCompatActivity() {
+
     companion object {
-        val schedule = ArrayList<Triple<String, String, String>>()
+        var schedule = ArrayList<Triple<String, String, String>>()
+        private val PREFS_TAG = "SharedPrefs"
+        private val PRODUCT_TAG = "MyProduct"
+
+        public final fun setDataFromSharedPreferences(ctxt:Context,curProduct: ArrayList<Triple<String, String, String>>) {
+
+            val gson = Gson()
+            val jsonCurProduct = gson.toJson(curProduct)
+
+            val sharedPref = ctxt.getSharedPreferences(PREFS_TAG, Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+
+            editor.putString(PRODUCT_TAG, jsonCurProduct)
+            editor.commit()
+        }
     }
+
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+        schedule = getDataFromSharedPreferences() as ArrayList<Triple<String, String, String>>
 
 //        schedule.add(Triple("Monday","Running","4.5"))
 //        schedule.add(Triple("TuesDay","Running","2.5"))
@@ -44,7 +64,30 @@ class DailySchedule : AppCompatActivity() {
             startActivity(intent)
         }
 
+        daily_schedule_home.setOnClickListener{
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+
+
+    private fun getDataFromSharedPreferences(): List<Triple<String, String, String>> {
+        val gson = Gson()
+        var productFromShared: List<Triple<String, String, String>> = ArrayList<Triple<String, String, String>>()
+        val sharedPref = applicationContext.getSharedPreferences(PREFS_TAG, Context.MODE_PRIVATE)
+        val jsonPreferences = sharedPref.getString(PRODUCT_TAG, "")
+
+        val type = object : TypeToken<List<Triple<String, String, String>>>() {
+
+        }.getType()
+        if (jsonPreferences !="")
+            productFromShared = gson.fromJson(jsonPreferences, type)
+
+        return productFromShared
+    }
+
+
     private class MyCustomAdapter(context: Context,schedule:ArrayList<Triple<String,String,String>>): BaseAdapter(){
         private val mContext:Context
         private val mSchedule:ArrayList<Triple<String,String,String>>
@@ -78,4 +121,6 @@ class DailySchedule : AppCompatActivity() {
         }
 
     }
+
+
 }
